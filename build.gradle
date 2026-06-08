@@ -1,7 +1,10 @@
 plugins {
     id 'java'
+    id 'application'
 }
-
+application {
+    mainClass = 'Main'
+}
 group 'misterX'
 version '1.0-SNAPSHOT'
 
@@ -12,6 +15,7 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation 'org.jocl:jocl:2.0.5'
 }
 
 jar {
@@ -19,7 +23,9 @@ jar {
         attributes 'Main-Class': 'Main'
     }
 }
-
+tasks.withType(JavaExec) {
+    standardInput = System.in
+}
 test {
     useJUnitPlatform()
 }
